@@ -24,6 +24,8 @@ class User extends Authenticatable
         'chapter_id',
         'email',
         'role',
+        'phone',
+        'active',
         'password',
     ];
 
