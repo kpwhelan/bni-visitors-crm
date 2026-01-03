@@ -61,4 +61,8 @@ class User extends Authenticatable
     public function chapter() {
         return $this->belongsTo(Chapter::class);
     }
+
+    public function visitorsInvited() {
+        return $this->hasMany(Visitor::class, 'invited_by_user_id');
+    }
 }
