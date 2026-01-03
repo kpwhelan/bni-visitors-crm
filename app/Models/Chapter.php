@@ -17,4 +17,8 @@ class Chapter extends Model {
     public function users() {
         return $this->hasMany(User::class);
     }
+
+    public function visitors() {
+        return $this->hasMany(Visitor::class);
+    }
 }

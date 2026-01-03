@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
-            $table->foreignIdFor(Chapter::class, 'chapter_id');
+            $table->foreignIdFor(Chapter::class, 'chapter_id')->nullable()->nullOnDelete();
             $table->enum('role', ['admin', 'member'])->default('member');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
