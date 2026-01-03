@@ -52,4 +52,11 @@ class User extends Authenticatable
             'two_factor_confirmed_at' => 'datetime',
         ];
     }
+
+    /**
+     * Get the chapter that the user belongs to.
+     */
+    public function chapter() {
+        return $this->belongsTo(Chapter::class);
+    }
 }
