@@ -10,7 +10,9 @@ import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import AuthLayout from '@/layouts/auth-layout';
 
-export default function Register() {
+type Chapter = { id: number | string; name: string };
+
+export default function Register({ chapters }: { chapters?: Chapter[] }) {
     return (
         <AuthLayout
             title="Create an account"
@@ -27,19 +29,58 @@ export default function Register() {
                     <>
                         <div className="grid gap-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                                <Label htmlFor="name">First Name</Label>
                                 <Input
-                                    id="name"
+                                    id="first_name"
                                     type="text"
                                     required
                                     autoFocus
                                     tabIndex={1}
-                                    autoComplete="name"
-                                    name="name"
-                                    placeholder="Full name"
+                                    autoComplete="first_name"
+                                    name="first_name"
+                                    placeholder="First Name"
                                 />
                                 <InputError
-                                    message={errors.name}
+                                    message={errors.first_name}
+                                    className="mt-2"
+                                />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="name">Last Name</Label>
+                                <Input
+                                    id="last_name"
+                                    type="text"
+                                    required
+                                    autoFocus
+                                    tabIndex={2}
+                                    autoComplete="last_name"
+                                    name="last_name"
+                                    placeholder="Last Name"
+                                />
+                                <InputError
+                                    message={errors.last_name}
+                                    className="mt-2"
+                                />
+                            </div>
+
+                            <div className='grid gap-2'>
+                                 <Label htmlFor="chapter">Chapter <span className=' text-xs'>(optional)</span></Label>
+                                <select
+                                    id="chapter_id"
+                                    name="chapter_id"
+                                    tabIndex={3}
+                                    className="w-full rounded-md border px-3 py-2"
+                                >
+                                    <option value="">Select a chapter</option>
+                                    {chapters?.map((c) => (
+                                        <option key={c.id} value={c.id}>
+                                            {c.name}
+                                        </option>
+                                    ))}
+                                </select>
+                                <InputError
+                                    message={errors.chapter_id}
                                     className="mt-2"
                                 />
                             </div>
@@ -50,7 +91,7 @@ export default function Register() {
                                     id="email"
                                     type="email"
                                     required
-                                    tabIndex={2}
+                                    tabIndex={4}
                                     autoComplete="email"
                                     name="email"
                                     placeholder="email@example.com"
@@ -64,7 +105,7 @@ export default function Register() {
                                     id="password"
                                     type="password"
                                     required
-                                    tabIndex={3}
+                                    tabIndex={5}
                                     autoComplete="new-password"
                                     name="password"
                                     placeholder="Password"
@@ -80,7 +121,7 @@ export default function Register() {
                                     id="password_confirmation"
                                     type="password"
                                     required
-                                    tabIndex={4}
+                                    tabIndex={6}
                                     autoComplete="new-password"
                                     name="password_confirmation"
                                     placeholder="Confirm password"
@@ -93,7 +134,7 @@ export default function Register() {
                             <Button
                                 type="submit"
                                 className="mt-2 w-full"
-                                tabIndex={5}
+                                tabIndex={7}
                                 data-test="register-user-button"
                             >
                                 {processing && <Spinner />}
